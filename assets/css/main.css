@@ -1,0 +1,588 @@
+/* ========== Main Styles ========== */
+
+html,
+body {
+	height: 100%;
+	color: #000000;
+	background-color: #f4f4f4;
+	font-family: Arial, Helvetica, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	vertical-align: top;
+	object-fit: cover;
+}
+
+.main-container {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+
+	max-width: 1300px;
+	margin: 0 auto;
+	padding-left: 15px;
+	padding-right: 15px;
+	box-sizing: content-box;
+}
+
+.content {
+	display: flex;
+	flex: 1 1 auto;
+	gap: 15px;
+	padding-top: 15px;
+}
+@media (max-width: 991.98px) {
+	.content {
+		flex-direction: column;
+	}
+}
+
+.widget-area {
+	flex: 1 0 30%;
+}
+@media (max-width: 991.98px) {
+	.widget-area {
+		flex: 100%;
+	}
+}
+
+.widget-area .widget {
+	margin-bottom: 15px;
+	padding: 15px;
+	background-color: #ffffff;
+	border: 1px solid #e7e7e7;
+  	border-radius: 5px;
+}
+
+[class*="__container"] {
+	max-width: 1300px;
+	margin: 0 auto;
+	padding-left: 15px;
+	padding-right: 15px;
+	box-sizing: content-box;
+}
+
+.posts-navigation {
+	display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+	gap: 15px;
+}
+
+.posts-navigation .page-numbers {
+	display: flex;
+	align-items: center;
+    justify-content: center;
+	width: 40px;
+	height: 40px;
+	background-color: #ffffff;
+	border: 1px solid #e7e7e7;
+  	border-radius: 5px;
+	text-decoration: none;
+	color: inherit;
+}
+.posts-navigation a:hover {
+	border: 4px solid #e7e7e7;
+}
+
+.archive__title {
+	margin-bottom: 15px;
+}
+
+.archive__description {
+	margin-bottom: 15px;
+}
+
+.search__title {
+	margin-bottom: 15px;
+}
+
+/**
+ * Change Prev|Next buttons text
+ *
+ * https://stackoverflow.com/questions/47221792/change-link-text-with-css
+ *
+ */
+.posts-navigation .prev.page-numbers.inactive {
+	font-size: 0;
+}
+.posts-navigation .prev.page-numbers.inactive::after {
+	content: "\25C1";
+	font-size: 16px;
+	color: inherit;
+}
+.posts-navigation .next.page-numbers.inactive {
+	font-size: 0;
+}
+.posts-navigation .next.page-numbers.inactive::after {
+	content: "\25B7";
+	font-size: 16px;
+	color: inherit;
+}
+.posts-navigation .prev.page-numbers {
+	font-size: 0;
+}
+.posts-navigation .prev.page-numbers::after {
+	content: "\25C1";
+	font-size: 16px;
+	color: inherit;
+}
+.posts-navigation .next.page-numbers {
+	font-size: 0;
+}
+.posts-navigation .next.page-numbers::after {
+	content: "\25B7";
+	font-size: 16px;
+	color: inherit;
+}
+.posts-navigation .page-numbers.current {
+	background-color: #949494;
+}
+
+input[type=text],
+input[type=email],
+input[type=url],
+input[type=tel],
+input[type=number],
+input[type=search],
+textarea {
+	border: 1px solid #949494;
+}
+
+/* ========== end___Main Styles ========== */
+
+/* ========== Live Search with AJAX ========== */
+
+.search-form {
+    position: relative;
+}
+
+.ajax-search {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    right: 0;
+    background: #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-top: 5px;
+    max-height: 230px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 100;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: #424348;
+    scrollbar-color: dark;
+    scrollbar-width: thin;
+    overscroll-behavior: contain;
+}
+
+.ajax-search::-webkit-scrollbar {
+    width: 6px;
+    background-color: #eff2f3;
+}
+
+.ajax-search::-webkit-scrollbar-thumb {
+    background-color: #dddddd;
+    border-radius: 4em;
+}
+
+.ajax-search__item {
+    position: relative;
+    border-top: 1px solid rgba(224, 229, 231, 0.5);
+    padding: 10px 15px;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+.ajax-search__link {
+    color: var(--accent);
+    line-height: 130%;
+    margin-bottom: 10px;
+    font-size: 13px;
+    display: block;
+}
+
+.ajax-search__excerpt {
+    cursor: default;
+    font-size: 11px;
+    line-height: 140%;
+}
+
+.ajax-search__not-found {
+    font-size: 12px;
+}
+
+/* ========== end___Live Search with AJAX ========== */
+
+/* end___HEADER */
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+}
+@media (max-width: 767.98px) {
+	.header__inner {
+		padding-top: 15px;
+	}
+}
+
+.header__branding {
+	display: flex;
+}
+
+@media (max-width: 767.98px) {
+	.menu-open .header__branding {
+		z-index: 2;
+	}
+}
+
+.header-branding__text {
+	display: flex;
+	flex-direction: column;
+	margin-left: 15px;
+}
+
+@media (max-width: 767.98px) {
+	.menu-open .header-branding__title a {
+		color: #ffffff;
+		text-decoration: none;
+	}
+}
+
+.header-branding__desc {
+	margin-top: 5px;
+}
+@media (max-width: 767.98px) {
+	.menu-open .header-branding__desc {
+		color: #ffffff;
+	}
+}
+
+.header__branding .header-branding__logo .custom-logo-link {
+	display: flex;
+	width: 100%;
+	height: auto;
+}
+
+.header__branding .header-branding__logo .custom-logo-link img {
+	max-width: 50px;
+}
+
+/* end___FOOTER */
+
+.footer__inner {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/* end___MAIN MENU */
+
+.menu-open body {
+	overflow: hidden;
+}
+
+.main__menu {
+	padding-left: 15px;
+}
+
+.main__menu .menu__body {
+	position: relative;
+	z-index: 5;
+}
+@media (max-width: 767.98px) {
+	.main__menu .menu__body {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0px;
+		left: -100%;
+		transition: left 0.3s;
+		background-color: #3b3b3b;
+		padding: 135px 20px 20px 20px;
+		overflow: auto;
+		z-index: 1;
+	}
+	.menu-open .main__menu .menu__body {
+		left: 0px;
+	}
+	.menu-open .main__menu .header::before {
+		content: "";
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100px;
+		background-color: #3B3B3B;
+		z-index: 2;
+	}
+}
+
+.main__menu .menu__list {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 30px;
+	row-gap: 5px;
+	flex-wrap: wrap;
+}
+@media (max-width: 767.98px) {
+	.main__menu .menu__list {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 15px;
+	}
+}
+
+.main__menu .menu__link {
+	font-size: 16px; 
+	color: #000000;
+	text-transform: uppercase;
+}
+@media (max-width: 768px) {
+	.menu-open .main__menu .menu__link {
+		font-size: 16px;
+		color: #ffffff;
+	}
+}
+
+.main__menu .menu__link:hover {
+	text-decoration: underline;
+}
+
+.main__menu .icon-menu {
+	display: none;
+}
+@media (max-width: 767.98px) {
+	.main__menu .icon-menu {
+		display: block;
+		position: relative;
+		z-index: 5;
+		width: 30px; 
+		height: 18px;
+	}
+	.main__menu .icon-menu__line,
+	.main__menu .icon-menu::before,
+	.main__menu .icon-menu::after {
+		content: "";
+		position: absolute;
+		background-color: #000000;
+		height: 2px;
+		width: 100%;
+		left: 0px;
+		transition: all 0.3s;
+	}
+	.main__menu .icon-menu::before {
+		top: 0px;
+	}
+	.main__menu .icon-menu::after {
+		bottom: 0px;
+	}
+	.main__menu .icon-menu__line {
+		top: calc(50% - 1px); 
+	}
+	.menu-open .main__menu .icon-menu::before {
+		top: calc(50% - 1px);
+		transform: rotate(-45deg);
+		background-color: #ffffff;
+	}
+	.menu-open .main__menu .icon-menu::after {
+		bottom: calc(50% - 1px);
+		transform: rotate(45deg);
+		background-color: #ffffff;
+	}
+	.menu-open .main__menu .icon-menu__line {
+		left: 50%;
+		width: 0px;
+		background-color: #ffffff;
+	}
+}
+
+/* end___MAIN MENU */
+
+/* ARTICLE */
+
+.article {
+	margin-bottom: 15px;
+	padding: 15px;
+	background-color: #ffffff;
+	border: 1px solid #e7e7e7;
+  	border-radius: 5px;
+}
+
+.article__title {
+	margin-bottom: 20px;
+}
+
+.article__content {
+	margin-bottom: 20px;
+}
+
+.article__text > * {
+	margin-top: 20px;
+}
+
+.article__content .read-more {
+	display: block;
+	margin-top: 20px;
+}
+
+.article__meta {
+	margin-bottom: 20px;
+}
+
+.article__navigation {
+	margin-bottom: 20px;
+}
+
+/* Comments */
+
+.article__comments .comment-reply-title {
+	margin-top: 20px;
+}
+
+.article__comments .comment {
+	margin-bottom: 30px;
+}
+
+.article__comments .comment .children {
+	margin-top: 15px;
+	margin-left: 30px;
+}
+
+.article__comments .comment .comment-meta {
+	margin-top: 15px;
+}
+
+.article__comments .comment .comment-content {
+	margin-top: 15px;
+}
+
+.article__comments .comment .reply {
+	margin-top: 10px;
+}
+
+.article__comments .comment-error {
+	padding: 15px;
+	color: #ffffff;
+	background-color: #b22222;
+}
+
+/* end___Comments */
+
+/* Widget area */
+
+.widget-area .wp-block-heading {
+	font-size: 16px;
+	font-weight: 700;
+	margin-bottom: 15px;
+}
+
+/* end___Widget area */
+
+/* end___ARTICLE */
+
+/* Scroll To Top Button */
+
+.scrollToTopBtn {
+	position: fixed;
+	display: block;
+	width: 50px;
+	height: 50px;
+	bottom: 25px;
+	right: 25px;
+	padding: 8px 4px;
+	cursor: pointer;
+	transform: translateY(100px);
+	opacity: 0;
+	transition: transform 0.5s, opacity 0.3s;
+	background-color: #dddddd;
+	z-index: 999;
+}
+.scrollToTopBtn:hover {
+	background-color: #d2d2d2;
+}
+  
+.showScrollBtn {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+/* end___Scroll To Top Button */
+
+/* Standard WordPress comment form */
+
+.comment-form {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.comment-form p:not(:last-child) {
+	margin-bottom: 15px;
+}
+
+.comment-form textarea {
+	width: 100%;
+	height: 200px;
+	padding: 5px;
+}
+@media (max-width: 767.98px) {
+	.comment-form textarea {
+		width: 100%;
+	}
+}
+
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"],
+.comment-form input[type="tel"] {
+	width: 100%;
+	height: 35px;
+	padding: 5px;
+}
+@media (max-width: 767.98px) {
+	.comment-form input[type="text"],
+	.comment-form input[type="email"],
+	.comment-form input[type="url"],
+	.comment-form input[type="tel"] {
+		width: 100%;
+	}
+}
+
+.comment-form input[type="submit"] {
+	width: 200px;
+	height: 50px;
+	padding: 5px;
+	background-color: transparent;
+	border: 1px solid #949494;
+	cursor: pointer;
+}
+
+.comment-form input[type="submit"]:hover {
+	border: 4px solid #e7e7e7;
+}
+
+/* end___Standard WordPress comment form */
+
+
+/* ========== PORTFOLIO ========== */
+
+.portfolio-archive .article {}
+.portfolio-archive .article__title {}
+.portfolio-archive .article__content {}
+
+.portfolio-single .article {}
+.portfolio-single .article__title {}
+.portfolio-single .article__content {}
+
+/* ========== end___PORTFOLIO ========== */
