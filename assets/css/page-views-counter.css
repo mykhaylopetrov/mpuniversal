@@ -1,0 +1,9 @@
+.page_views {
+	display: flex;
+	gap: 5px;
+	/* align-items: center; */
+}
+.page_views_icon {
+	width: 20px;
+	height: 20px;
+}

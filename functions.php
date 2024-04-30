@@ -122,6 +122,11 @@ function mpuniversal_scripts() {
 		) 
 	), 'before' );
 
+	// Page Views Counter
+	wp_enqueue_style( MPUNIVERSAL_TEXT_DOMAIN . '-page-views-counter', MPUNIVERSAL_URL . '/assets/css/page-views-counter.css', array(), MPUNIVERSAL_THEME_VERSION );
+	wp_enqueue_script( MPUNIVERSAL_TEXT_DOMAIN . '-page-views-counter', MPUNIVERSAL_URL  . '/assets/js/page-views-counter.js', array('jquery'), '1.0', true );
+    wp_localize_script( MPUNIVERSAL_TEXT_DOMAIN . '-page-views-counter', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -170,4 +175,7 @@ require MPUNIVERSAL_PATH . '/inc/polylang.php';
 
 /* AJAX Comments */
 require MPUNIVERSAL_PATH . '/inc/ajax-comments.php';
+
+/* AJAX Post Views Counter */
+require MPUNIVERSAL_PATH . '/inc/page-views-counter.php';
 
