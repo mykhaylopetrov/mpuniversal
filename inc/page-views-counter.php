@@ -1,6 +1,11 @@
 <?php
 /**
  * https://chat.openai.com/c/6e1e9c8f-6d72-4658-a407-5d838dae299f
+ * 
+ * Clear meta info in BD:
+ * 
+ * https://petrov.net.ua/cleaning-wordpress-database/#vidaliti-vsi-metapolya-za-vkazanim-klyuchem
+ * 
  */
 add_action( 'wp_ajax_increase_page_views', 'increase_page_views' );
 add_action( 'wp_ajax_nopriv_increase_page_views', 'increase_page_views' );
