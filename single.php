@@ -10,11 +10,7 @@ get_header();
 	<?php
 	while ( have_posts() ) :
 		the_post();
-		?>
 		
-		<?php echo do_shortcode( '[mpuniversal_ajax_post_views_counter_shortcode]' ); ?>
-
-		<?php
 		get_template_part( 'template-parts/content', get_post_type() );
 
 		// the_post_navigation(

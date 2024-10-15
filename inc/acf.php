@@ -7,6 +7,20 @@ if ( ! is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) {
 	return;
 }
 
+/**
+ * Disable ACF Pro update notifications
+ */
+if ( ! function_exists( 'mpuniversal_disable_acfpro_plugin_updates_notify' ) ) {
+	add_filter( 'site_transient_update_plugins', 'mpuniversal_disable_acfpro_plugin_updates_notify' );
+	function mpuniversal_disable_acfpro_plugin_updates_notify( $value ) {
+		if ( isset( $value ) && is_object( $value ) ) {
+			unset( $value->response['advanced-custom-fields-pro/acf.php'] );
+		}
+		
+		return $value;
+	}
+}
+
 /** 
  * Site Locale 
  */
@@ -45,6 +59,19 @@ if ( ! function_exists( 'mpuniversal_disable_acf_plugin_deactivation' ) ) {
 add_filter( 'acf/settings/show_admin', '__return_false' );
 
 /**
+ * Hide ACF admin notices
+ */
+add_action( 'admin_head', function() {
+?>
+	<style>
+		.acf-admin-notice {
+			display: none !important;
+		}
+	</style>
+<?php
+} );
+
+/**
  * Apply Shortcodes in ACF fields
  * 
  * https://www.advancedcustomfields.com/resources/acf-format_value/
@@ -52,12 +79,65 @@ add_filter( 'acf/settings/show_admin', '__return_false' );
  */
 if ( ! function_exists( 'mpuniversal_acf_format_value' ) ) {
 	// Apply to all fields.
-	add_filter( 'acf/format_value', 'mpuniversal_acf_format_value', 10, 3 );
+	// add_filter( 'acf/format_value', 'mpuniversal_acf_format_value', 10, 3 );
 	// Apply to textarea fields.
 	// add_filter( 'acf/format_value/type=textarea', 'my_acf_format_value', 10, 3 );
 	function mpuniversal_acf_format_value( $value, $post_id, $field ) {
 		return do_shortcode( $value );
 	}
+}
+
+/**
+ * Get ACF field from Options Page
+ */
+if ( ! function_exists( 'mpuniversal_get_acf_field_from_page_options' ) ) {
+	function mpuniversal_get_acf_field_from_page_options( $acfFieldKey ) {
+		if ( $acfFieldKey && ! empty( $acfFieldKey ) ) {
+			return get_field( $acfFieldKey, 'option' );
+		}
+	}
+}
+
+/**
+ * Get ACF field from Single Post
+ */
+if ( ! function_exists( 'mpuniversal_get_acf_field_from_single_post' ) ) {
+	function mpuniversal_get_acf_field_from_single_post( $acfFieldKey ) {
+		if ( $acfFieldKey && ! empty( $acfFieldKey ) ) {
+			return get_field( $acfFieldKey );
+		}
+	}
+}
+
+/**
+ * Add to Wysiwyg Editor change font size
+ */
+add_filter( 'mce_buttons', 'mpuniversal_mce_buttons' );
+function mpuniversal_mce_buttons( $buttons ) {
+    if ( ! in_array( 'fontsizeselect', $buttons ) ) {
+        array_unshift( $buttons, 'fontsizeselect' );
+    }
+    return $buttons;
+}
+// add_filter( 'acf/fields/wysiwyg/toolbars', 'mpuniversal_custom_wysiwyg_toolbar' );
+function mpuniversal_custom_wysiwyg_toolbar( $toolbars ) {
+    // Створюємо нову панель інструментів, якщо її ще немає
+    if ( ! isset( $toolbars['Custom Toolbar'] ) ) {
+        $toolbars['Custom Toolbar'] = array();
+    }
+
+    // Перевіряємо наявність кнопки 'fontsizeselect'
+    if ( ! in_array( 'fontsizeselect', $toolbars['Custom Toolbar'][1] ) ) {
+        $toolbars['Custom Toolbar'][1][] = 'fontsizeselect';
+    }
+
+    return $toolbars;
+}
+add_filter( 'tiny_mce_before_init', 'mpuniversal_customize_tiny_mce' );
+function mpuniversal_customize_tiny_mce( $initArray ) {
+    $initArray['fontsize_formats'] = '8px 10px 12px 14px 16px 18px 24px 28px 30px 32px 36px 48px';
+    
+    return $initArray;
 }
 
 /**

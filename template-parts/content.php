@@ -68,6 +68,18 @@
 		<?php mpuniversal_entry_meta(); ?>
 	</div>
 
+	<?php
+	// if ( shortcode_exists( 'mpuniversal_ajax_post_views_counter_shortcode' ) ) {
+	// 	echo do_shortcode( '[mpuniversal_ajax_post_views_counter_shortcode]' ); 
+	// }
+	?>
+
+	<?php
+	if ( shortcode_exists( 'mpviews_counter' ) ) {
+		echo do_shortcode( '[mpviews_counter]' ); 
+	}
+	?>
+
 	<?php if ( is_singular() ) { ?>
 		<div class="article__navigation">
 			<?php mpuniversal_article_navigation(); ?>
