@@ -406,10 +406,13 @@ if ( ! function_exists( 'mpuniversal_add_custom_class_for_a_menu_items' ) ) {
 if ( ! function_exists( 'mpuniversal_add_header_menu_custom_items' ) ) {
 	// add_filter( 'wp_nav_menu_items', 'mpuniversal_add_header_menu_custom_items', 10, 2 );
 	function mpuniversal_add_header_menu_custom_items( $items, $args ) {
-		if ( $args->theme_location == 'header-menu' ) {
-			$langSwitcher = do_shortcode( '[name_shortcode]' );
-			$items .= $langSwitcher;
+		if ( shortcode_exists( 'name_shortcode' ) ) {
+			if ( $args->theme_location == 'header-menu' ) {
+				$langSwitcher = do_shortcode( '[name_shortcode]' );
+				$items .= $langSwitcher;
+			}
 		}
+		
 		return $items;
 	}
 }
