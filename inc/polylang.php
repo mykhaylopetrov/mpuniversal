@@ -73,6 +73,47 @@ if ( ! function_exists( 'mpuniversal_filter_pll_rel_hreflang_attributes' ) ) {
 }
 
 /**
+ * Polylang language switcher
+ */
+/**
+ * Polylang Shortcode - https://wordpress.org/plugins/polylang/
+ * Add this code in your functions.php
+ * Put shortcode [polylang_langswitcher] to post/page for display flags
+ * https://gist.github.com/nicomollet/47ba9808f3187c9f1568d8f7c4355b54
+ *
+ * @return string
+ */
+add_shortcode( 'cityhouse_polylang_langswitcher_shortcode', 'cityhouse_polylang_langswitcher' );
+function cityhouse_polylang_langswitcher() {
+    ob_start();
+	
+    $output = '';
+    $dropdown = '';
+
+    // if ( wp_is_mobile() === false ) {    
+        $dropdown = 1;
+    // } elseif ( wp_is_mobile() === true ) {
+        // $dropdown = 0;
+    // }
+
+    if ( function_exists( 'pll_the_languages' ) ) {
+        $args  = [
+            'dropdown'         => $dropdown,
+            'show_flags'       => 0,
+            'show_names'       => 0,
+            'echo'             => 0,
+            'hide_current'     => 1,
+            'display_names_as' => 'slug',
+        ];
+        $output = '<li class="menu__item menu__item--language">' . pll_the_languages( $args ) . '</li>';
+    }
+    
+    ob_end_clean();
+    
+    return $output;
+}
+
+/**
  * Polylang Strings
  * 
  * Не обов'язково функції перекладу вішати на хук "init". Можна просто без хуку та без функції.
