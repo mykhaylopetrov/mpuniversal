@@ -128,7 +128,7 @@ if ( ! function_exists( 'mpuniversal_polylang_strings' ) ) {
 		 *
 		 * Если вдруг функции перестанут существовать, то ничего не случится, будет всего лишь выводиться английская версия перевода!
 		 */
-		if ( function_exists( 'pll_register_string' ) && function_exists( 'pll__' ) && function_exists( 'pll_e' ) ) {
+		if ( ! function_exists( 'pll_register_string' ) && ! function_exists( 'pll__' ) && ! function_exists( 'pll_e' ) ) {
 			return;
 		}
 
